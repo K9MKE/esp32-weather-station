@@ -1,0 +1,103 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "PlatformIO: Build",
+			"type": "shell",
+			"command": "C:\\Users\\oscul\\.platformio\\penv\\Scripts\\platformio.exe",
+			"args": [
+				"run"
+			],
+			"problemMatcher": [
+				"$platformio"
+			],
+			"group": "build"
+		},
+		{
+			"label": "PlatformIO: Upload",
+			"type": "shell",
+			"command": "C:\\Users\\oscul\\.platformio\\penv\\Scripts\\platformio.exe",
+			"args": [
+				"run",
+				"--target",
+				"upload"
+			],
+			"problemMatcher": [
+				"$platformio"
+			],
+			"group": "build"
+		},
+		{
+			"label": "PlatformIO Build",
+			"type": "shell",
+			"command": "C:\\Users\\oscul\\.platformio\\penv\\Scripts\\platformio.exe",
+			"args": [
+				"run"
+			],
+			"problemMatcher": [
+				"$platformio"
+			],
+			"group": "build"
+		},
+		{
+			"label": "PlatformIO Build",
+			"type": "shell",
+			"command": "C:\\Users\\oscul\\.platformio\\penv\\Scripts\\platformio.exe",
+			"args": [
+				"run"
+			],
+			"problemMatcher": [
+				"$platformio"
+			],
+			"group": "build"
+		},
+		{
+			"label": "PlatformIO Build",
+			"type": "shell",
+			"command": "C:\\Users\\oscul\\.platformio\\penv\\Scripts\\platformio.exe",
+			"args": [
+				"run"
+			],
+			"problemMatcher": [
+				"$platformio"
+			],
+			"group": "build"
+		},
+		{
+			"label": "PlatformIO Build",
+			"type": "shell",
+			"command": "C:\\Users\\oscul\\.platformio\\penv\\Scripts\\platformio.exe",
+			"args": [
+				"run"
+			],
+			"problemMatcher": [
+				"$platformio"
+			],
+			"group": "build"
+		},
+		{
+			"label": "PlatformIO Build",
+			"type": "shell",
+			"command": "C:\\Users\\oscul\\.platformio\\penv\\Scripts\\platformio.exe",
+			"args": [
+				"run"
+			],
+			"problemMatcher": [
+				"$platformio"
+			],
+			"group": "build"
+		},
+		{
+			"label": "PlatformIO Build",
+			"type": "shell",
+			"command": "C:\\Users\\oscul\\.platformio\\penv\\Scripts\\platformio.exe",
+			"args": [
+				"run"
+			],
+			"problemMatcher": [
+				"$platformio"
+			],
+			"group": "build"
+		}
+	]
+}
