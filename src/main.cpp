@@ -17,7 +17,6 @@ const char* ONECALL_API_URL = "https://api.openweathermap.org/data/3.0/onecall";
 // Location Configuration from config.h
 const float latitude = LATITUDE;
 const float longitude = LONGITUDE;
-const char* LOCATION_NAME = "Weather Station"; // Display name
 
 TFT_eSPI tft = TFT_eSPI();
 WeatherData currentWeather;
@@ -81,19 +80,63 @@ void setup() {
   Serial.println("Display initialized");
   
   displayInit();
-  displaySplashScreen();
   
-  // Connect to WiFi
+  // Show startup sequence with detailed status
+  displayMessage("ESP32 Weather Station");
+  delay(2000);
+  
+  displayMessage("Starting System...");
+  delay(1500);
+  
+  displayMessage("Hardware: OK");
+  delay(1000);
+  
+  // Connect to WiFi with detailed status
+  displayMessage("Connecting to WiFi...");
+  Serial.println("Starting WiFi connection...");
   connectToWiFi();
   
-  // Get initial time and weather data
+  // Time synchronization
+  displayMessage("Syncing Time...");
+  Serial.println("Synchronizing time with API...");
+  delay(1000);
   updateTime(); // Get time immediately on startup
+  displayMessage("Time: Synchronized");
+  delay(1500);
+  
+  // Weather data fetching
+  displayMessage("Fetching Weather...");
+  Serial.println("Fetching weather data from OpenWeatherMap OneCall 3.0...");
+  delay(1000);
   updateAllWeatherData(); // OneCall 3.0 - gets current, hourly, daily in one call
-  updateAirQualityData(); // Separate air quality call
-  // updateMoonData(); // Move moon data after time initialization
-  updateSpaceWeatherData(); // Get initial space weather data
-  updateNOAASpaceWeatherData(); // Get initial NOAA space weather data
-  updateAuroraForecast(); // Get initial aurora forecasts
+  displayMessage("Weather: Updated");
+  delay(1500);
+  
+  // Air quality data
+  displayMessage("Getting Air Quality...");
+  Serial.println("Fetching air quality data...");
+  delay(1000);
+  updateAirQualityData();
+  displayMessage("Air Quality: Updated");
+  delay(1500);
+  
+  // Space weather data
+  displayMessage("Space Weather APIs...");
+  Serial.println("Fetching space weather data...");
+  delay(1000);
+  updateSpaceWeatherData();
+  updateNOAASpaceWeatherData();
+  updateAuroraForecast();
+  displayMessage("Space Weather: Updated");
+  delay(1500);
+  
+  // Final status
+  displayMessage("System Ready!");
+  Serial.println("All systems initialized successfully!");
+  delay(2000);
+  
+  displayMessage("Loading Interface...");
+  delay(1000);
   
   Serial.println("Weather Station Ready!");
 }
@@ -162,6 +205,8 @@ void loop() {
 
 void connectToWiFi() {
   displayMessage("Connecting to WiFi...");
+  Serial.print("Connecting to SSID: ");
+  Serial.println(ssid);
   
   WiFi.begin(ssid, password);
   
@@ -169,6 +214,7 @@ void connectToWiFi() {
   while (WiFi.status() != WL_CONNECTED && attempts < 20) {
     delay(500);
     Serial.print(".");
+    displayMessage("WiFi: Attempt " + String(attempts + 1) + "/20");
     attempts++;
   }
   
@@ -176,7 +222,9 @@ void connectToWiFi() {
     Serial.println("");
     Serial.print("Connected to WiFi. IP address: ");
     Serial.println(WiFi.localIP());
-    displayMessage("WiFi Connected!");
+    displayMessage("WiFi: Connected!");
+    delay(1000);
+    displayMessage("IP: " + WiFi.localIP().toString());
     delay(2000);
   } else {
     Serial.println("Failed to connect to WiFi");
@@ -915,6 +963,7 @@ void updateAllWeatherData() {
           Serial.print(" - Time: "); Serial.print(hourlyForecast.hours[hourCount].time);
           Serial.print(", Temp: "); Serial.print(hourlyForecast.hours[hourCount].temperature);
           Serial.print(", Humidity: "); Serial.print(hourlyForecast.hours[hourCount].humidity);
+          Serial.print("%, Rain: "); Serial.print(hourlyForecast.hours[hourCount].precipChance);
           Serial.println("%");
           
           hourCount++;
@@ -943,20 +992,28 @@ void updateAllWeatherData() {
               Serial.print("Raw OneCall Moon Phase: ");
               Serial.println(currentWeather.moonPhase);
               
-              // Convert moon phase to name
+              // Convert moon phase to name (0.0 = New Moon, 0.5 = Full Moon)
               float phase = currentWeather.moonPhase;
-              if (phase < 0.125 || phase >= 0.875) {
+              if (phase < 0.0625 || phase >= 0.9375) {
                 currentWeather.moonPhaseName = "New Moon";
-              } else if (phase < 0.375) {
+              } else if (phase < 0.1875) {
                 currentWeather.moonPhaseName = "Waxing Crescent";
-              } else if (phase < 0.625) {
+              } else if (phase < 0.3125) {
+                currentWeather.moonPhaseName = "First Quarter";
+              } else if (phase < 0.4375) {
+                currentWeather.moonPhaseName = "Waxing Gibbous";
+              } else if (phase < 0.5625) {
                 currentWeather.moonPhaseName = "Full Moon";
+              } else if (phase < 0.6875) {
+                currentWeather.moonPhaseName = "Waning Gibbous";
+              } else if (phase < 0.8125) {
+                currentWeather.moonPhaseName = "Last Quarter";
               } else {
                 currentWeather.moonPhaseName = "Waning Crescent";
               }
               
-              // Manual override for October 24, 2025 if API data seems wrong
-              if (timeinfo->tm_year + 1900 == 2025 && timeinfo->tm_mon + 1 == 10 && timeinfo->tm_mday == 24) {
+              // Manual override DISABLED for testing - was October 24, 2025 if API data seems wrong
+              if (timeinfo->tm_year + 1900 == 2099 && timeinfo->tm_mon + 1 == 10 && timeinfo->tm_mday == 24) {
                 Serial.println("Manual override for October 24, 2025 - correcting moon phase");
                 
                 // October 24, 2025 is actually a Waxing Crescent phase
@@ -1136,28 +1193,27 @@ void updateMoonData() {
     // For debugging - calculate expected phase for this date
     // October 24, 2025 should be approximately day 23 of lunar cycle (Waxing Crescent)
     
-    if (phase >= 0 && phase < 0.03) {
+    // Convert phase value to moon phase name (consistent with OneCall API logic)
+    if (phase < 0.0625 || phase >= 0.9375) {
       currentWeather.moonPhaseName = "New Moon";
-    } else if (phase >= 0.03 && phase < 0.22) {
+    } else if (phase < 0.1875) {
       currentWeather.moonPhaseName = "Waxing Crescent";
-    } else if (phase >= 0.22 && phase < 0.28) {
+    } else if (phase < 0.3125) {
       currentWeather.moonPhaseName = "First Quarter";
-    } else if (phase >= 0.28 && phase < 0.47) {
+    } else if (phase < 0.4375) {
       currentWeather.moonPhaseName = "Waxing Gibbous";
-    } else if (phase >= 0.47 && phase < 0.53) {
+    } else if (phase < 0.5625) {
       currentWeather.moonPhaseName = "Full Moon";
-    } else if (phase >= 0.53 && phase < 0.72) {
+    } else if (phase < 0.6875) {
       currentWeather.moonPhaseName = "Waning Gibbous";
-    } else if (phase >= 0.72 && phase < 0.78) {
+    } else if (phase < 0.8125) {
       currentWeather.moonPhaseName = "Last Quarter";
-    } else if (phase >= 0.78 && phase < 0.97) {
-      currentWeather.moonPhaseName = "Waning Crescent";
     } else {
-      currentWeather.moonPhaseName = "New Moon";
+      currentWeather.moonPhaseName = "Waning Crescent";
     }
     
-    // Manual override for October 24, 2025 if API data seems wrong
-    if (timeinfo->tm_year + 1900 == 2025 && timeinfo->tm_mon + 1 == 10 && timeinfo->tm_mday == 24) {
+    // Manual override DISABLED for testing - was October 24, 2025 if API data seems wrong
+    if (timeinfo->tm_year + 1900 == 2099 && timeinfo->tm_mon + 1 == 10 && timeinfo->tm_mday == 24) {
       Serial.println("Manual override for October 24, 2025 - correcting moon phase");
       
       // October 24, 2025 is actually a Waxing Crescent phase
