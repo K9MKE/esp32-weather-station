@@ -1,4 +1,4 @@
-# ESP32 T-Display Weather Station# ESP32 T-Display Weather Station# ESP32 T-Display Weather Station# ESP32 T-Display Weather Station# ESP32 T-Display Weather Station
+# ESP32 T-Display Weather Station# ESP32 T-Display Weather Station# ESP32 T-Display Weather Station# ESP32 T-Display Weather Station# ESP32 T-Display Weather Station# ESP32 T-Display Weather Station
 
 
 
@@ -6,135 +6,271 @@ An accurate weather station with astronomy features for the LILYGO® TTGO T-Disp
 
 
 
-## 🌟 FeaturesAn accurate weather station with astronomy features for the LILYGO® TTGO T-Display ESP32.
+![ESP32 T-Display Weather Station](https://img.shields.io/badge/ESP32-Weather%20Station-blue) ![PlatformIO](https://img.shields.io/badge/PlatformIO-Compatible-orange) ![License](https://img.shields.io/badge/License-MIT-green)An accurate weather station with astronomy features for the LILYGO® TTGO T-Display ESP32.
 
 
 
-- **8 Screen Weather Display**: Current conditions, hourly forecast, daily forecast, astronomy, air quality, and more
-
-- **Accurate Moon Phases**: Manual overrides for precise lunar data
-
-- **Customized Layouts**: Aligned astronomical data and enhanced forecast display## 🌟 FeaturesA comprehensive weather station built with ESP32 T-Display featuring real-time weather data, space weather monitoring, and aurora forecasting across 8 different display screens.
-
-- **Multiple Data Sources**: OneCall 3.0 API for weather, RapidAPI for moon phases
-
-- **Auto-Refresh**: Updates every 10 minutes
+## 🌟 Features
 
 
 
-## 📱 Display Screens- **8 Screen Weather Display**: Current conditions, hourly forecast, daily forecast, astronomy, air quality, and more
+- **8 Weather Display Screens** - Current conditions, forecasts, air quality, astronomy## 🌟 FeaturesAn accurate weather station with astronomy features for the LILYGO® TTGO T-Display ESP32.
+
+- **Accurate Moon Phases** - Manual overrides for precise lunar data
+
+- **Enhanced Layouts** - Aligned astronomical data and improved forecast display
+
+- **OneCall 3.0 API** - Latest weather data from OpenWeatherMap
+
+- **Auto-Refresh** - Updates every 10 minutes- **8 Screen Weather Display**: Current conditions, hourly forecast, daily forecast, astronomy, air quality, and more
 
 
 
-1. **Current Weather** - Temperature, conditions, feels like- **Accurate Moon Phases**: Manual overrides for precise lunar data
+## 📱 Display Screens- **Accurate Moon Phases**: Manual overrides for precise lunar data
+
+
+
+1. **Current Weather** - Temperature, conditions, feels like- **Customized Layouts**: Aligned astronomical data and enhanced forecast display## 🌟 FeaturesA comprehensive weather station built with ESP32 T-Display featuring real-time weather data, space weather monitoring, and aurora forecasting across 8 different display screens.
 
 2. **Hourly Forecast** - Next 24 hours with icons
 
-3. **7-Day Forecast** - Extended weather outlook- **Customized Layouts**: Aligned astronomical data and enhanced forecast display## 🌟 FeaturesA comprehensive weather station built with ESP32 T-Display featuring real-time weather data, space weather monitoring, and aurora forecasting across 8 different display screens.A beautiful weather station project for the ESP32 T-Display board featuring real-time weather data, stunning graphics, and WiFi connectivity.
+3. **7-Day Forecast** - Extended weather outlook- **Multiple Data Sources**: OneCall 3.0 API for weather, RapidAPI for moon phases
 
 4. **Astronomy** - Sun/moon rise/set times, moon phase
 
-5. **Air Quality** - AQI and pollutant levels- **Multiple Data Sources**: OneCall 3.0 API for weather, RapidAPI for moon phases
+5. **Air Quality** - AQI and pollutant levels- **Auto-Refresh**: Updates every 10 minutes
 
 6. **Weather Alerts** - Severe weather warnings
 
-7. **Detailed Current** - Humidity, pressure, UV index- **Auto-Refresh**: Updates every 10 minutes
+7. **Detailed Current** - Humidity, pressure, UV index
 
 8. **Additional Data** - Wind, visibility, dewpoint
 
-
+## 📱 Display Screens- **8 Screen Weather Display**: Current conditions, hourly forecast, daily forecast, astronomy, air quality, and more
 
 ## 🛠️ Hardware Required
 
-## 📱 Display Screens- **8 Different Screens** - Current weather, 7-day forecast, hourly forecast, air quality, astronomy, space weather, aurora forecasts
+
 
 - **LILYGO® TTGO T-Display ESP32** (ST7789 135x240 LCD)
 
-- **WiFi Connection** for API access
+- **WiFi Connection** for API access1. **Current Weather** - Temperature, conditions, feels like- **Accurate Moon Phases**: Manual overrides for precise lunar data
 
 - **USB Cable** for programming and power
-
-1. **Current Weather** - Temperature, conditions, feels like- **Real-time Data** - Weather updates every 10 minutes from OpenWeatherMap and NOAA
-
-## 🔧 Setup Instructions
 
 2. **Hourly Forecast** - Next 24 hours with icons
 
-### 1. Install Dependencies
+## 🚀 Quick Setup
 
-3. **7-Day Forecast** - Extended weather outlook- **Aurora Monitoring** - Space weather data for aurora watching## Features## Features
+3. **7-Day Forecast** - Extended weather outlook- **Customized Layouts**: Aligned astronomical data and enhanced forecast display## 🌟 FeaturesA comprehensive weather station built with ESP32 T-Display featuring real-time weather data, space weather monitoring, and aurora forecasting across 8 different display screens.A beautiful weather station project for the ESP32 T-Display board featuring real-time weather data, stunning graphics, and WiFi connectivity.
 
-This project uses PlatformIO. Install the following libraries:
+### 1. Get API Keys
 
-- `TFT_eSPI`4. **Astronomy** - Sun/moon rise/set times, moon phase
+4. **Astronomy** - Sun/moon rise/set times, moon phase
 
-- `WiFi`
+**OpenWeatherMap (Required):**
 
-- `HTTPClient`5. **Air Quality** - AQI and pollutant levels- **Easy Navigation** - Press right button to cycle through screens
+1. Visit [OpenWeatherMap](https://openweathermap.org/api/one-call-3)5. **Air Quality** - AQI and pollutant levels- **Multiple Data Sources**: OneCall 3.0 API for weather, RapidAPI for moon phases
 
-- `ArduinoJson`
+2. Sign up for free account
 
-- `Time`6. **Weather Alerts** - Severe weather warnings
+3. Subscribe to "One Call API 3.0" (1000 calls/day free)6. **Weather Alerts** - Severe weather warnings
+
+4. Copy your API key
+
+7. **Detailed Current** - Humidity, pressure, UV index- **Auto-Refresh**: Updates every 10 minutes
+
+**RapidAPI for Moon Phases (Optional):**
+
+1. Visit [Moon Phase API](https://rapidapi.com/MoonAPIcom/api/moon-phase/)8. **Additional Data** - Wind, visibility, dewpoint
+
+2. Subscribe to free tier
+
+3. Copy your API key
 
 
 
-### 2. Configure APIs7. **Detailed Current** - Humidity, pressure, UV index- **WiFi Connected** - No manual updates needed
+### 2. Configure Settings## 🛠️ Hardware Required
 
 
 
-Edit `src/config.h` and add your credentials:8. **Additional Data** - Wind, visibility, dewpoint
+Edit `src/config.h` and add your credentials:## 📱 Display Screens- **8 Different Screens** - Current weather, 7-day forecast, hourly forecast, air quality, astronomy, space weather, aurora forecasts
 
 
 
-```cpp
+```cpp- **LILYGO® TTGO T-Display ESP32** (ST7789 135x240 LCD)
 
 // WiFi Settings
 
-#define WIFI_SSID "YOUR_WIFI_SSID"## 🛠️ Hardware Required
+#define WIFI_SSID "YOUR_WIFI_SSID"- **WiFi Connection** for API access
 
 #define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
 
-## 🛠️ What You Need### 🌤️ Weather & Environmental Data- 🌤️ **Real-time Weather Data** - Current temperature, humidity, pressure, and wind information
+- **USB Cable** for programming and power
 
-// OpenWeatherMap API Key (Free tier available)
+// API Keys
 
-#define OPENWEATHER_API_KEY "YOUR_OPENWEATHERMAP_API_KEY"- **LILYGO® TTGO T-Display ESP32** (ST7789 135x240 LCD)
-
-
-
-// RapidAPI Key for Moon Phases- **WiFi Connection** for API access
+#define OPENWEATHER_API_KEY "YOUR_OPENWEATHERMAP_API_KEY"1. **Current Weather** - Temperature, conditions, feels like- **Real-time Data** - Weather updates every 10 minutes from OpenWeatherMap and NOAA
 
 #define RAPIDAPI_KEY "YOUR_RAPIDAPI_KEY"
 
-- **USB Cable** for programming and power
+## 🔧 Setup Instructions
 
-// Your Location Coordinates
+// Your Location (find at latlong.net)
 
-#define LATITUDE 40.7128    // Your latitude- **ESP32 T-Display** board (LILYGO TTGO T-Display ESP32 with 1.14" screen)- **Current Weather** - Temperature, humidity, pressure, wind conditions- 📱 **Beautiful TFT Display** - Clean, modern UI with weather icons and color-coded data  
+#define LATITUDE 40.7128    // Your latitude2. **Hourly Forecast** - Next 24 hours with icons
 
 #define LONGITUDE -74.0060  // Your longitude
 
-```## 🔧 Setup Instructions
+```### 1. Install Dependencies
 
 
+
+### 3. Build and Upload3. **7-Day Forecast** - Extended weather outlook- **Aurora Monitoring** - Space weather data for aurora watching## Features## Features
+
+
+
+```bashThis project uses PlatformIO. Install the following libraries:
+
+# Using PlatformIO CLI
+
+pio run --target upload- `TFT_eSPI`4. **Astronomy** - Sun/moon rise/set times, moon phase
+
+
+
+# Or use VS Code with PlatformIO extension- `WiFi`
+
+```
+
+- `HTTPClient`5. **Air Quality** - AQI and pollutant levels- **Easy Navigation** - Press right button to cycle through screens
+
+## 🌙 Special Features
+
+- `ArduinoJson`
+
+### Accurate Moon Phases
+
+This weather station includes enhanced moon phase accuracy with manual overrides for specific dates where API data may be inaccurate. The system automatically corrects known discrepancies.- `Time`6. **Weather Alerts** - Severe weather warnings
+
+
+
+### Enhanced Layouts
+
+- **Astronomy Screen**: Aligned sunrise/sunset and moonrise/moonset data
+
+- **7-Day Forecast**: Extended weather descriptions with repositioned rain percentages### 2. Configure APIs7. **Detailed Current** - Humidity, pressure, UV index- **WiFi Connected** - No manual updates needed
+
+- **Improved Spacing**: Better visual hierarchy and readability
+
+
+
+## 🔧 Dependencies
+
+Edit `src/config.h` and add your credentials:8. **Additional Data** - Wind, visibility, dewpoint
+
+This project uses PlatformIO with these libraries:
+
+- `TFT_eSPI` - Display driver
+
+- `WiFi` - Network connectivity
+
+- `HTTPClient` - API requests```cpp
+
+- `ArduinoJson` - JSON parsing
+
+- `Time` - Time synchronization// WiFi Settings
+
+
+
+## 📡 API Attribution#define WIFI_SSID "YOUR_WIFI_SSID"## 🛠️ Hardware Required
+
+
+
+### Weather Data#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
+
+- **OpenWeatherMap One Call API 3.0** - Weather data including current conditions, forecasts, and alerts
+
+- Website: https://openweathermap.org/## 🛠️ What You Need### 🌤️ Weather & Environmental Data- 🌤️ **Real-time Weather Data** - Current temperature, humidity, pressure, and wind information
+
+- License: Free tier available (1,000 calls/day)
+
+// OpenWeatherMap API Key (Free tier available)
+
+### Moon Phase Data
+
+- **Moon Phase API by MoonAPI.com** via RapidAPI#define OPENWEATHER_API_KEY "YOUR_OPENWEATHERMAP_API_KEY"- **LILYGO® TTGO T-Display ESP32** (ST7789 135x240 LCD)
+
+- Website: https://rapidapi.com/MoonAPIcom/api/moon-phase/
+
+- License: Free tier available
+
+
+
+## 🐛 Troubleshooting// RapidAPI Key for Moon Phases- **WiFi Connection** for API access
+
+
+
+### WiFi Issues#define RAPIDAPI_KEY "YOUR_RAPIDAPI_KEY"
+
+- Check SSID and password are correct
+
+- Ensure 2.4GHz network (ESP32 doesn't support 5GHz)- **USB Cable** for programming and power
+
+
+
+### API Issues// Your Location Coordinates
+
+- Verify API keys are correct
+
+- Check subscription status for One Call 3.0#define LATITUDE 40.7128    // Your latitude- **ESP32 T-Display** board (LILYGO TTGO T-Display ESP32 with 1.14" screen)- **Current Weather** - Temperature, humidity, pressure, wind conditions- 📱 **Beautiful TFT Display** - Clean, modern UI with weather icons and color-coded data  
+
+- Monitor rate limits (1000 calls/day for free tier)
+
+#define LONGITUDE -74.0060  // Your longitude
+
+### Display Issues
+
+- Verify TFT_eSPI library configuration```## 🔧 Setup Instructions
+
+- Check pin definitions match your board
+
+
+
+## 🤝 Contributing
 
 ### 3. Get API Keys- **USB-C Cable** for programming and power
 
+Feel free to submit issues and enhancement requests!
 
+
+
+## 📄 License
 
 **OpenWeatherMap (Required)**:### 1. Install Dependencies
 
+This project is open source under the MIT License.
+
 1. Visit [OpenWeatherMap](https://openweathermap.org/api/one-call-3)
+
+## 🙏 Acknowledgments
 
 2. Sign up for free account- **WiFi Network** (2.4GHz)- **7-Day Forecast** - Extended weather outlook with precipitation chances- 📡 **WiFi Connectivity** - Fetches data from OpenWeatherMap API
 
-3. Subscribe to "One Call API 3.0" (1000 calls/day free)
+- **LILYGO** for the T-Display ESP32 hardware
 
-4. Copy your API keyThis project uses PlatformIO. Install the following libraries:
+- **OpenWeatherMap** for weather data API3. Subscribe to "One Call API 3.0" (1000 calls/day free)
+
+- **MoonAPI.com** for lunar phase calculations
+
+- **Bodmer** for the TFT_eSPI display library4. Copy your API keyThis project uses PlatformIO. Install the following libraries:
 
 
 
-**RapidAPI for Moon Phases (Optional)**:- `TFT_eSPI`- **Free OpenWeatherMap Account** (for weather data)
+---
+
+
+
+**⚠️ Important**: Ensure you have valid API keys and comply with terms of service. This project is for personal, educational, and non-commercial use.**RapidAPI for Moon Phases (Optional)**:- `TFT_eSPI`- **Free OpenWeatherMap Account** (for weather data)
 
 1. Visit [Moon Phase API](https://rapidapi.com/MoonAPIcom/api/moon-phase/)
 
